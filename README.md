@@ -11,3 +11,4 @@ Skeleton of Citizens Loader module
 
 Daniel Alba Muñiz (UO245188)
 José Luis Bugallo González (UO244702)
+Ignacio Escribano Burgos (UO227766)
