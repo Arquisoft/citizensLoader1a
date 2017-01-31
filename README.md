@@ -7,5 +7,4 @@ Skeleton of Citizens Loader module
 
 # Authors
 
-Herminio García González (@herminiogg)
-Jose Emilio Labra Gayo (@labra)
+Daniel Alba Muñiz (UO245188)
