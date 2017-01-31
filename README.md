@@ -8,3 +8,4 @@ Skeleton of Citizens Loader module
 # Authors
 
 Daniel Alba Muñiz (UO245188)
+José Luis Bugallo González (UO244702)
