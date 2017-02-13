@@ -3,7 +3,7 @@ package executer;
 import model.User;
 
 public interface ExecuterFacade {
-	public void guardarDatos(User usuario);
-	public void escribirLog(String texto);
-	// public void comprobarSeguridad();  Esto es una ampliacion opcional y no se en que consiste
+	public void saveData(User usuario);
+	public void writeLog(String texto);
+	// public void verifySecurity();  Esto es una ampliacion opcional y no se en que consiste
 }
