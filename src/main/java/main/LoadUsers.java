@@ -1,5 +1,7 @@
 package main;
 
+import loader.LoaderSingleton;
+
 
 /**
  * Main application
@@ -16,5 +18,7 @@ public class LoadUsers {
 
 	void run(String... args) {
 		// TODO main para pruebas
+		
+		LoaderSingleton.getInstance().loadFile(args[0]);
 	}
 }
