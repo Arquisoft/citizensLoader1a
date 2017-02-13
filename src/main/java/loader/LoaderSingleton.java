@@ -14,7 +14,7 @@ public class LoaderSingleton {
 		return instance;
 	}
 
-	public void loadFile(String cad){
+	public void loadFile(String cad) {
 		loader.load(cad);
 	}
 
