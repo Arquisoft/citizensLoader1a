@@ -13,8 +13,8 @@ class ExcelLoader implements FileLoader{
 		 la causa del error.
 		 Va leyendo linea por linea(hay un usuario en cada linea):
 		 Para cada linea crea un objeto User y se lo pasa al metodo cargarDatos del 
-		 ExecuterFacade. Si existe algun fallo de FORMATO se para la lectura y se 
-		 escribe dicho error en el log.
+		 AtionFacade. Si existe algun fallo de FORMATO se ignora esa linea y 
+		 se pasa a la siguiente, ademas de escribir dicho error en el log.
 		 */
 	}	
 	public ActionFacade getaF() {
