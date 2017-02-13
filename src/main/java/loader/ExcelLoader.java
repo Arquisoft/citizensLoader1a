@@ -80,7 +80,8 @@ class ExcelLoader implements FileLoader {
 	}
 	
 	private void crearUsuarios(List<String> list){
-		User user = new User(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4), list.get(5), list.get(6));
+		User user = new User(list.get(0), list.get(1), list.get(2), list.get(3),
+				list.get(4), list.get(5), list.get(6));
 		System.out.println(user.toString());
 		//aF.saveData(user);
 	}

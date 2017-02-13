@@ -3,7 +3,6 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-// TODO JPA class
 @Entity(name = "TUsers")
 public class User {
 	@Id
@@ -16,13 +15,15 @@ public class User {
 	private String direccionPostal;
 	private String nacionalidad;
 	private String DNI;
+	private String username;
+	private String password;
 
 	public User() {
 	} // Constructor vacio para JPA
 
 	public User(String nombre, String apellidos, String email,
-			String fechaNacimiento, String direccionPostal,
-			String nacionalidad, String DNI) {
+				String fechaNacimiento, String direccionPostal,
+				String nacionalidad, String DNI) {
 		setNombre(nombre);
 		setApellidos(apellidos);
 		setEmail(email);
@@ -30,6 +31,16 @@ public class User {
 		setDireccionPostal(direccionPostal);
 		setNacionalidad(nacionalidad);
 		setDNI(DNI);
+		generarUsername();
+		generarPassword();
+	}
+
+	private void setPassword(String password) {
+		this.password = password;
+	}
+
+	private void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getNombre() {
@@ -123,5 +134,33 @@ public class User {
 				+ apellidos + ", email=" + email + ", fechaNacimiento="
 				+ fechaNacimiento + ", direccionPostal=" + direccionPostal
 				+ ", nacionalidad=" + nacionalidad + ", DNI=" + DNI + "]";
+	}
+	
+	private void generarUsername()
+	{
+		String username = "";
+		int low = 65;
+		int top = 90;
+		for(int i = 0; i<12; i++){
+			int numAleatorio = (int)Math.floor(Math.random()*(top - low) + low);
+			username += (char)numAleatorio;
+		}
+		setUsername(username);
+	}
+	
+	private void generarPassword()
+	{
+		String pass = "";
+		int low = 65;
+		int top = 90;
+		for(int i = 0; i<9; i++){
+			int numAleatorio = (int)Math.floor(Math.random()*(top - low) + low);
+			pass += (char)numAleatorio;
+		}
+		for(int i = 0; i<3; i++){
+			int numAleatorio = (int)Math.floor(Math.random()*(9 - 0) + 0);
+			pass += numAleatorio;
+		}
+		setPassword(pass);
 	}
 }
