@@ -1,7 +1,7 @@
 package loader;
 
 public class LoaderSingleton {
-	private static LoaderSingleton single;
+	private static LoaderSingleton instance;
 	private FileLoader loader;
 
 	private LoaderSingleton() {
@@ -9,12 +9,12 @@ public class LoaderSingleton {
 	}
 
 	public static LoaderSingleton getInstance() {
-		if (single == null)
-			single = new LoaderSingleton();
-		return single;
+		if (instance == null)
+			instance = new LoaderSingleton();
+		return instance;
 	}
 
-	public void read(String cad) throws Exception {
+	public void loadFile(String cad) throws Exception {
 		loader.load(cad);
 	}
 

@@ -4,7 +4,7 @@ import executer.*;
 
 
 class ExcelLoader implements FileLoader{
-	private ExecuterFacade eF;
+	private ActionFacade aF;
 	
 	@Override
 	public void load(String path) {
@@ -17,12 +17,12 @@ class ExcelLoader implements FileLoader{
 		 escribe dicho error en el log.
 		 */
 	}	
-	public ExecuterFacade geteF() {
-		return eF;
+	public ActionFacade getaF() {
+		return aF;
 	}
 
-	public void seteF(ExecuterFacade eF) {
-		this.eF = eF;
+	public void setaF(ActionFacade aF) {
+		this.aF = aF;
 	}
 
 	

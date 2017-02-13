@@ -2,8 +2,8 @@ package executer;
 
 import model.User;
 
-public interface ExecuterFacade {
-	public void saveData(User usuario);
-	public void writeLog(String texto);
+public interface ActionFacade {
+	public void saveData(User user);
+	public void writeLog(String text);
 	// public void verifySecurity();  Esto es una ampliacion opcional y no se en que consiste
 }

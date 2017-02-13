@@ -2,10 +2,10 @@ package executer;
 
 import model.User;
 
-public class ExecuterFacadeClass implements ExecuterFacade {
+public class ActionFacadeClass implements ActionFacade {
 
 	@Override
-	public void saveData(User usuario) {
+	public void saveData(User user) {
 		/* TODO Consulta la base de datos para guardar el usuario leido del fichero
 		   Si el usuario ya existe, da igual si viene con los mismos datos u otros, 
 		   se escribe en el log y no se guarda en BBDD.
@@ -17,7 +17,7 @@ public class ExecuterFacadeClass implements ExecuterFacade {
 	}
 
 	@Override
-	public void writeLog(String texto) {
+	public void writeLog(String text) {
 		/* TODO Llama a metodos estaticos de la clase Log para escribir
 	     en el fichero de log */		
 	}
