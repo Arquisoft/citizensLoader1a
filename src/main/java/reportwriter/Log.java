@@ -1,4 +1,5 @@
-package log;
+package reportwriter;
+//Esto sería WreportP
 //TODO Buscar informacion sobre este import para hacer el logging
 import java.util.logging.Logger;
 

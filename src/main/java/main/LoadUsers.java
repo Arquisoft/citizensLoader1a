@@ -1,6 +1,6 @@
 package main;
 
-import loader.LoaderSingleton;
+import parser.LoaderSingleton;
 
 
 /**
