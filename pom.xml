@@ -163,7 +163,7 @@
 					<!-- MainClass in mainfest make a executable jar -->
 					<archive>
 						<manifest>
-							<mainClass>es.uniovi.asw.LoadUsers</mainClass>
+							<mainClass>main.LoadUsers</mainClass>
 						</manifest>
 					</archive>
 
