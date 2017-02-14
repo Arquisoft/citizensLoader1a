@@ -1,29 +1,32 @@
 package model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "TUsers")
 public class User {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String apellidos;
 	private String email;
-	private String fechaNacimiento; // Lo dejo en String de momento. Hay que
-									// hablarlo con el otro grupo.
+	private Date fechaNacimiento;
 	private String direccionPostal;
 	private String nacionalidad;
 	private String DNI;
 	private String username;
 	private String password;
 
-	public User() {
+	User() {
 	} // Constructor vacio para JPA
 
-	public User(String nombre, String apellidos, String email,
-				String fechaNacimiento, String direccionPostal,
-				String nacionalidad, String DNI) {
+	public User(String nombre, String apellidos, String email, Date fechaNacimiento, String direccionPostal,
+			String nacionalidad, String DNI) {
 		setNombre(nombre);
 		setApellidos(apellidos);
 		setEmail(email);
@@ -67,11 +70,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	private void setFechaNacimiento(String fechaNacimiento) {
+	private void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -130,37 +133,43 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nombre=" + nombre + ", apellidos="
-				+ apellidos + ", email=" + email + ", fechaNacimiento="
-				+ fechaNacimiento + ", direccionPostal=" + direccionPostal
-				+ ", nacionalidad=" + nacionalidad + ", DNI=" + DNI + "]";
+		return "User [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
+				+ ", fechaNacimiento=" + fechaNacimiento + ", direccionPostal=" + direccionPostal + ", nacionalidad="
+				+ nacionalidad + ", DNI=" + DNI + "]";
 	}
-	
-	private void generarUsername()
-	{
+
+	private void generarUsername() {
 		String username = "";
 		int low = 65;
 		int top = 90;
-		for(int i = 0; i<12; i++){
-			int numAleatorio = (int)Math.floor(Math.random()*(top - low) + low);
-			username += (char)numAleatorio;
+		for (int i = 0; i < 12; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
+			username += (char) numAleatorio;
 		}
 		setUsername(username);
 	}
-	
-	private void generarPassword()
-	{
+
+	private void generarPassword() {
 		String pass = "";
 		int low = 65;
 		int top = 90;
-		for(int i = 0; i<9; i++){
-			int numAleatorio = (int)Math.floor(Math.random()*(top - low) + low);
-			pass += (char)numAleatorio;
+		for (int i = 0; i < 9; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
+			pass += (char) numAleatorio;
 		}
-		for(int i = 0; i<3; i++){
-			int numAleatorio = (int)Math.floor(Math.random()*(9 - 0) + 0);
+		for (int i = 0; i < 3; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (9 - 0) + 0);
 			pass += numAleatorio;
 		}
 		setPassword(pass);
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
 }

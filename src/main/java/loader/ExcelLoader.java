@@ -21,52 +21,51 @@ import executer.*;
 
 class ExcelLoader implements FileLoader {
 	private ActionFacade aF;
-	
+
+	/**
+	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no
+	 * esta en formato excel, detiene la lectura y escribe en el log la causa
+	 * del error. Va leyendo linea por linea(hay un usuario en cada linea): Para
+	 * cada linea crea un objeto User y se lo pasa al metodo cargarDatos del
+	 * AtionFacade. Si existe algun fallo de FORMATO se ignora esa linea y se
+	 * pasa a la siguiente, ademas de escribir dicho error en el log.
+	 * 
+	 * @param path
+	 *            ruta del fichero
+	 * 
+	 */
 	@Override
 	public void load(String path) {
-		/*
-		 * Lee el fichero excel de la ruta pasada por parametro Si el
-		 * fichero no esta en formato excel, detiene la lectura y escribe en el
-		 * log la causa del error. Va leyendo linea por linea(hay un usuario en
-		 * cada linea): Para cada linea crea un objeto User y se lo pasa al
-		 * metodo cargarDatos del AtionFacade. Si existe algun fallo de FORMATO
-		 * se ignora esa linea y se pasa a la siguiente, ademas de escribir
-		 * dicho error en el log.
-		 */
-		InputStream ficheroExcel;
+		InputStream excelFile;
 		XSSFWorkbook excel;
+		int i = 0;
 		try {
-			ficheroExcel = new FileInputStream(path);
-
-			excel = new XSSFWorkbook(ficheroExcel);
+			excelFile = new FileInputStream(path);
+			excel = new XSSFWorkbook(excelFile);
 			XSSFSheet sheet = excel.getSheetAt(0);
 			XSSFRow row;
 			XSSFCell cell;
-
-			List<String> user; 
-			
+			List<XSSFCell> user;
 			Iterator<Row> rows = sheet.rowIterator();
-			int i=0;
+
 			while (rows.hasNext()) {
-				user = new ArrayList<String>();
+				user = new ArrayList<XSSFCell>();
 				row = (XSSFRow) rows.next();
 				Iterator<Cell> cells = row.cellIterator();
-				if (i > 0){
+				if (i > 0) {
 					while (cells.hasNext()) {
 						cell = (XSSFCell) cells.next();
-							user.add(cell.toString());
-						}
-					System.out.println();
+						user.add(cell);
+						System.out.println(cell.toString());
+					}
 					crearUsuarios(user);
 				}
 				i++;
 			}
 		} catch (FileNotFoundException e) {
 			System.err.println("No se ha encontrado el archivo excel esperado");
-			e.printStackTrace();
 		} catch (IOException ioe) {
-			System.err.println("Problema con la lectura del excel");
-			ioe.printStackTrace();
+			System.err.println("Problema con la lectura del excel en la linea " + i);
 		}
 
 	}
@@ -78,12 +77,13 @@ class ExcelLoader implements FileLoader {
 	public void setaF(ActionFacade aF) {
 		this.aF = aF;
 	}
-	
-	private void crearUsuarios(List<String> list){
-		User user = new User(list.get(0), list.get(1), list.get(2), list.get(3),
-				list.get(4), list.get(5), list.get(6));
-		System.out.println(user.toString());
-		//aF.saveData(user);
+
+	private void crearUsuarios(List<XSSFCell> list) {
+		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
+				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
+				list.get(6).getStringCellValue());
+		getaF().saveData(user);
 	}
 
 }
