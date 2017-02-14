@@ -139,29 +139,29 @@ public class User {
 	}
 
 	private void generarUsername() {
-		String username = "";
+		StringBuffer username = new StringBuffer();
 		int low = 65;
 		int top = 90;
 		for (int i = 0; i < 12; i++) {
 			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
-			username += (char) numAleatorio;
+			username.append((char) numAleatorio); 
 		}
-		setUsername(username);
+		setUsername(username.toString());
 	}
 
 	private void generarPassword() {
-		String pass = "";
+		StringBuffer pass = new StringBuffer();
 		int low = 65;
 		int top = 90;
 		for (int i = 0; i < 9; i++) {
 			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
-			pass += (char) numAleatorio;
+			pass.append((char) numAleatorio);
 		}
 		for (int i = 0; i < 3; i++) {
 			int numAleatorio = (int) Math.floor(Math.random() * (9 - 0) + 0);
-			pass += numAleatorio;
+			pass.append(numAleatorio);
 		}
-		setPassword(pass);
+		setPassword(pass.toString());
 	}
 
 	public String getUsername() {
