@@ -25,26 +25,29 @@ public class ParserTest {
 		StringBuilder st = new StringBuilder();
 		
 		for (int i = 0; i < list1.size(); i++){
-			st.append(list1.get(i).toString() + " ");
+			if (i != 3)
+				st.append(list1.get(i).toString() + " ");
 		}
 		
-		assertEquals(st.toString(), "Juan Torres Pardo juan@example.com 10-oct-1985 C/ Federico García Lorca 2 Español 90500084Y ");
+		assertEquals(st.toString(), "Juan Torres Pardo juan@example.com C/ Federico García Lorca 2 Español 90500084Y ");
 		
 		st = new StringBuilder();
 		
 		for (int i = 0; i < list2.size(); i++){
-			st.append(list2.get(i).toString() + " ");
+			if (i != 3)
+				st.append(list2.get(i).toString() + " ");
 		}
 		
-		assertEquals(st.toString(), "Luis López Fernando luis@example.com 02-mar-1970 C/ Real Oviedo 2 Español 19160962F ");
+		assertEquals(st.toString(), "Luis López Fernando luis@example.com C/ Real Oviedo 2 Español 19160962F ");
 		
 		st = new StringBuilder();
 		
 		for (int i = 0; i < list3.size(); i++){
-			st.append(list3.get(i).toString() + " ");
+			if (i != 3)
+				st.append(list3.get(i).toString() + " ");
 		}
 		
-		assertEquals(st.toString(), "Ana Torres Pardo ana@example.com 01-ene-1960 Av. De la Constitución 8 Español 09940449X ");
+		assertEquals(st.toString(), "Ana Torres Pardo ana@example.com Av. De la Constitución 8 Español 09940449X ");
 	}
 
 	@Test (expected = FileNotFoundException.class)
