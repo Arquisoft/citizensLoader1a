@@ -20,8 +20,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import executer.*;
 
 //Esto sería RList
-class ExcelLoader implements FileLoader {
+public class ExcelLoader implements FileLoader {
 	private ActionFacade aF;
+	private ArrayList<List<XSSFCell>> allUsers;
 
 	/**
 	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no
@@ -33,12 +34,14 @@ class ExcelLoader implements FileLoader {
 	 * 
 	 * @param path
 	 *            ruta del fichero
+	 * @throws FileNotFoundException 
 	 * 
 	 */
 	@Override
-	public void load(String path) {
+	public void load(String path) throws FileNotFoundException {
 		InputStream excelFile;
 		XSSFWorkbook excel;
+		allUsers = new ArrayList<List<XSSFCell>>();
 		int i = 0;
 		try {
 			excelFile = new FileInputStream(path);
@@ -57,14 +60,16 @@ class ExcelLoader implements FileLoader {
 					while (cells.hasNext()) {
 						cell = (XSSFCell) cells.next();
 						user.add(cell);
-						System.out.println(cell.toString());
+						System.out.print(cell.toString() + " ; ");
 					}
+					System.out.println();
+					allUsers.add(user);
 					crearUsuarios(user);
 				}
 				i++;
 			}
 		} catch (FileNotFoundException e) {
-			System.err.println("No se ha encontrado el archivo excel esperado");
+			throw e;
 		} catch (IOException ioe) {
 			System.err.println("Problema con la lectura del excel en la linea " + i);
 		}
@@ -84,7 +89,11 @@ class ExcelLoader implements FileLoader {
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
 				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
 				list.get(6).getStringCellValue());
-		getaF().saveData(user);
+		//getaF().saveData(user);
+	}
+	
+	public ArrayList<List<XSSFCell>> getAllUsers(){
+		return allUsers;
 	}
 
 }

@@ -1,5 +1,7 @@
 package parser;
 
+import java.io.FileNotFoundException;
+
 public class LoaderSingleton {
 	private static LoaderSingleton instance;
 	private FileLoader loader;
@@ -14,7 +16,7 @@ public class LoaderSingleton {
 		return instance;
 	}
 
-	public void loadFile(String cad) {
+	public void loadFile(String cad) throws FileNotFoundException {
 		loader.load(cad);
 	}
 
