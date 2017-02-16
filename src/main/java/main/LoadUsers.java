@@ -4,11 +4,10 @@ import java.io.FileNotFoundException;
 
 import parser.LoaderSingleton;
 
-
 /**
  * Main application
  * 
- * @author Labra
+ * @author 1A1
  *
  */
 public class LoadUsers {
@@ -19,25 +18,31 @@ public class LoadUsers {
 	}
 
 	void run(String... args) {
-		// TODO main para pruebas
-		if(args.length == 0){
-			System.out.println("Introduce como parámetro la orden --help para mostrar la información.");
-		} else{
-			if (args[0].equals("--help"))
-				showHelp();
-			else
-				try{
-					LoaderSingleton.getInstance().loadFile(args[0]);
-				}catch(FileNotFoundException e){
-					System.err.println("No se ha encontrado el archivo excel esperado");
-					e.printStackTrace();
-				}
-						
+		if (args.length == 0 || args[0].equals("--help"))
+			showHelp();
+		else if (args[0].equals("info"))
+			showInfo();
+		else if (args[0].equals("load")) {
+			if (args.length < 2)
+				System.err.println("La operacion load necesita al menos otro "
+						+ "argumento con la ubicacion del fichero");
+			else {
+				for (int i = 1; i < args.length - 1; i++)
+					try {
+						LoaderSingleton.getInstance().loadFile(args[i]);
+					} catch (FileNotFoundException e) {
+						continue;
+					}
+			}
 		}
 	}
-	
-	private void showHelp(){
-		System.out.println("Ayuda para cargar el archivo a la base de datos:");
-		System.out.println("Introduce como único parámetro la ruta del archivo a cargar.");
+
+	private void showInfo() {
+		// TODO Por hacer
+
+	}
+
+	private void showHelp() {
+		// TODO Por hacer
 	}
 }
