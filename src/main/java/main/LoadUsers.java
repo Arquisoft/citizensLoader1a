@@ -1,7 +1,5 @@
 package main;
 
-import java.io.FileNotFoundException;
-
 import parser.LoaderSingleton;
 
 /**
@@ -27,12 +25,8 @@ public class LoadUsers {
 				System.err.println("La operacion load necesita al menos otro "
 						+ "argumento con la ubicacion del fichero");
 			else {
-				for (int i = 1; i < args.length - 1; i++)
-					try {
-						LoaderSingleton.getInstance().loadFile(args[i]);
-					} catch (FileNotFoundException e) {
-						continue;
-					}
+				for (int i = 1; i <= args.length - 1; i++)
+					LoaderSingleton.getInstance().loadFile(args[i]);
 			}
 		}
 	}
@@ -55,8 +49,8 @@ public class LoadUsers {
 	private void showHelp() {
 		System.out.println("Manual de ayuda para el uso de la aplicacion");
 		System.out.println("La aplicacion tiene implementadas las operaciones info, load y help");
-		System.out.println("	-info: Muestra informacion relacionada con el proyecto, como los autores");
-		System.out.println("	-load[file]: Permite cargar un conjunto de ficheros excel con usuarios "
+		System.out.println("	info: Muestra informacion relacionada con el proyecto, como los autores");
+		System.out.println("	load[file]: Permite cargar un conjunto de ficheros excel con usuarios "
 				+ "en la base de datos");
 		System.out.println("	--help: Muestra este menu de ayuda. Si no se proporcionan parametros "
 				+ "a la aplicacion se mostrara este menu");

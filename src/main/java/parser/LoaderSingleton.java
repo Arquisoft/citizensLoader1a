@@ -1,6 +1,9 @@
 package parser;
 
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+
+import reportwriter.ReportWriter;
 
 public class LoaderSingleton {
 	private static LoaderSingleton instance;
@@ -16,8 +19,12 @@ public class LoaderSingleton {
 		return instance;
 	}
 
-	public void loadFile(String cad) throws FileNotFoundException {
-		loader.load(cad);
+	public void loadFile(String cad) {
+		try{
+			loader.load(cad);
+		}catch (FileNotFoundException e) {
+			System.err.println("No se ha encontrado el archivo excel especificado.");
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "No se ha encontrado el archivo excel");
+		}
 	}
-
 }

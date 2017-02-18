@@ -7,8 +7,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 
 import model.User;
+import reportwriter.ReportWriter;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -34,13 +36,13 @@ public class ExcelLoader implements FileLoader {
 	 * 
 	 * @param path
 	 *            ruta del fichero
-	 * @throws FileNotFoundException 
 	 * 
+	 *  @exception FileNotFoundException No se encuentra el fichero excel
 	 */
 	@Override
-	public void load(String path) throws FileNotFoundException {
-		InputStream excelFile;
-		XSSFWorkbook excel;
+	public void load(String path) throws FileNotFoundException{
+		InputStream excelFile = null;
+		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
 		int i = 0;
 		try {
@@ -68,10 +70,28 @@ public class ExcelLoader implements FileLoader {
 				}
 				i++;
 			}
-		} catch (FileNotFoundException e) {
-			throw e;
-		} catch (IOException ioe) {
+		} catch(FileNotFoundException ex){
+			throw ex;
+		}
+		catch (IOException ioe) {
 			System.err.println("Problema con la lectura del excel en la linea " + i);
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Problema con la lectura del excel en la linea " + i);
+		}finally {
+			if (excelFile != null){
+				try {
+					excelFile.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if (excel != null) {
+				try {
+					excel.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}
