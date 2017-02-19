@@ -11,7 +11,13 @@ public class InsertP implements Insert{
 	
 	@Override
 	public User save(User user) {
-		return userRepository.save(user);
+		try{
+			userRepository.save(user);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	@Override

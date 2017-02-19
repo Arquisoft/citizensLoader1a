@@ -1,5 +1,6 @@
 package executer;
 
+import dbupdate.Insert;
 import dbupdate.InsertP;
 import model.User;
 
@@ -7,7 +8,7 @@ public class ActionFacadeClass implements ActionFacade {
 
 	@Override
 	public void saveData(User user) {
-		InsertP insert = new InsertP();
+		Insert insert = new InsertP();
 		insert.save(user);
 		/* TODO Consulta la base de datos para guardar el usuario leido del fichero
 		   Si el usuario ya existe, da igual si viene con los mismos datos u otros, 

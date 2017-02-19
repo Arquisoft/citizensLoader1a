@@ -23,7 +23,7 @@ import executer.*;
 
 //Esto sería RList
 public class ExcelLoader implements FileLoader {
-	private ActionFacade aF;
+	private ActionFacade aF = new ActionFacadeClass();
 	private ArrayList<List<XSSFCell>> allUsers;
 
 	/**
@@ -109,7 +109,8 @@ public class ExcelLoader implements FileLoader {
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
 				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
 				list.get(6).getStringCellValue());
-		//getaF().saveData(user);
+		//Problemas, no se autogenera el id (null)
+		getaF().saveData(user);
 	}
 	
 	public ArrayList<List<XSSFCell>> getAllUsers(){
