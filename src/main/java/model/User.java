@@ -18,7 +18,7 @@ public class User {
 	private Date fechaNacimiento;
 	private String direccionPostal;
 	private String nacionalidad;
-	private String DNI;
+	private String dni;
 	private String username;
 	private String password;
 
@@ -95,11 +95,11 @@ public class User {
 	}
 
 	public String getDNI() {
-		return DNI;
+		return dni;
 	}
 
 	private void setDNI(String DNI) {
-		this.DNI = DNI;
+		this.dni = DNI;
 	}
 
 	public Long getId() {
@@ -110,7 +110,7 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((DNI == null) ? 0 : DNI.hashCode());
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		return result;
 	}
 
@@ -123,10 +123,10 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (DNI == null) {
-			if (other.DNI != null)
+		if (dni == null) {
+			if (other.dni != null)
 				return false;
-		} else if (!DNI.equals(other.DNI))
+		} else if (!dni.equals(other.dni))
 			return false;
 		return true;
 	}
@@ -135,7 +135,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
 				+ ", fechaNacimiento=" + fechaNacimiento + ", direccionPostal=" + direccionPostal + ", nacionalidad="
-				+ nacionalidad + ", DNI=" + DNI + "]";
+				+ nacionalidad + ", DNI=" + dni + "]";
 	}
 
 	private void generarUsername() {
