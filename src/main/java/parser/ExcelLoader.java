@@ -109,7 +109,6 @@ public class ExcelLoader implements FileLoader {
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
 				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
 				list.get(6).getStringCellValue());
-		//Problemas, no se autogenera el id (null)
 		getaF().saveData(user);
 	}
 	

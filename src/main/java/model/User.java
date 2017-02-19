@@ -1,14 +1,18 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "Users")
-public class User {
+@SuppressWarnings("unused")
+@Entity
+@Table(name = "Users")
+public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
