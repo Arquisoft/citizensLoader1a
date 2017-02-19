@@ -15,8 +15,7 @@ public class ActionFacadeClass implements ActionFacade {
 		   Si no existe crea usuario y contraseña para dicho usuario llamando a 
 		   metodos del modelo (User) y lo guarda en BBDD. Intentar hacerlo en pocas lineas
 		   como los comandos del carWorkshop
-		 */
-		
+		 */		
 	}
 
 	@Override
