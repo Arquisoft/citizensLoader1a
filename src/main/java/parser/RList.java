@@ -93,7 +93,6 @@ public class RList implements ReadList {
 				}
 			}
 		}
-
 	}
 
 	public ActionFacade getaF() {
@@ -109,7 +108,9 @@ public class RList implements ReadList {
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
 				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
 				list.get(6).getStringCellValue());
-		getaF().saveData(user);
+		InsertR insert = new InsertR();
+		insert.save(user);
+		//getaF().saveData(user);
 	}
 	
 	public ArrayList<List<XSSFCell>> getAllUsers(){
