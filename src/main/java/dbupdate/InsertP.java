@@ -22,14 +22,13 @@ public class InsertP implements Insert {
 		try {
 			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
-				
+						"El usuario con el dni " + user.getDNI() + " ya existe en la base de datos");
 				trx.rollback();
-			} else if (!UserFinder.findByEmail(user.getEmail()).isEmpty()){
+			} else if (!UserFinder.findByEmail(user.getEmail()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
+						"Ya existe un usuario con el email " + user.getEmail() + " en la base de datos");
 				trx.rollback();
-			} else{
+			} else {
 				Jpa.getManager().persist(user);
 				trx.commit();
 			}
