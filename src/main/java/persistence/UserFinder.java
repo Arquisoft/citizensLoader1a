@@ -19,7 +19,7 @@ public class UserFinder {
 		trx.begin();
 		List<User> res = null;
 		try {
-			res = Jpa.getManager().createNamedQuery("User.findByEmail", User.class).setParameter(1, dni)
+			res = Jpa.getManager().createNamedQuery("User.findByDni", User.class).setParameter(1, dni)
 					.getResultList();
 			trx.commit();
 		} catch (PersistenceException ex) {
