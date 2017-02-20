@@ -1,6 +1,7 @@
 package dbupdate;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceException;
 import model.User;
 import persistence.UserFinder;
 import persistence.util.Jpa;
+import reportwriter.ReportWriter;
 
 public class InsertP implements Insert {
 
@@ -18,12 +20,20 @@ public class InsertP implements Insert {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			Jpa.getManager().persist(user);
-			trx.commit();
+			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
+				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
+						"El usuario ya ha sido registrado anteriormente " 
+								+ "debido a que aparecia en otra lista");
+				trx.rollback();
+			} else {
+				Jpa.getManager().persist(user);
+				trx.commit();
+			}
 		} catch (PersistenceException ex) {
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, 
+					"Error de la BBDD");
 			if (trx.isActive())
 				trx.rollback();
-			throw ex;
 		} finally {
 			if (mapper.isOpen())
 				mapper.close();
