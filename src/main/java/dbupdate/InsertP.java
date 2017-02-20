@@ -20,15 +20,19 @@ public class InsertP implements Insert {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()
-				|| UserFinder.findByEmail(user.getEmail()).isEmpty()){
+			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
 						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
-			}else {
+				
+				trx.rollback();
+			} else if (!UserFinder.findByEmail(user.getEmail()).isEmpty()){
+				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
+						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
+				trx.rollback();
+			} else{
 				Jpa.getManager().persist(user);
 				trx.commit();
 			}
-				trx.rollback();			
 		} catch (PersistenceException ex) {
 			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Error de la BBDD");
 			if (trx.isActive())
