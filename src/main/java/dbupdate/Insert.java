@@ -1,9 +1,13 @@
 package dbupdate;
 
+import java.util.List;
+
 import model.User;
 
-public interface Insert{
+public interface Insert {
 	User save(User user);
-	User findByDNI(String dni);
-	User findByEmail(String email);
+
+	List<User> findByDNI(String dni);
+
+	List<User> findByEmail(String email);
 }

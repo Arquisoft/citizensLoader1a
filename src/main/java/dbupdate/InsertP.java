@@ -1,29 +1,28 @@
 package dbupdate;
 
+import java.util.List;
 
 import model.User;
+import persistence.UserFinder;
+import persistence.util.Jpa;
+
 
 public class InsertP implements Insert {
-	UserRepository userRepository;
+	
 
 	@Override
 	public User save(User user) {
-		userRepository = MyContext.getApplicationContext().getBean(UserRepository.class);
-		try {
-			userRepository.save(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Jpa.getManager().persist(user);
 		return user;
 	}
 
 	@Override
-	public User findByDNI(String dni) {
-		return userRepository.findByDni(dni);
+	public List<User> findByDNI(String dni) {
+		return UserFinder.findByDNI(dni);
 	}
 
 	@Override
-	public User findByEmail(String email) {
-		return userRepository.findByEmail(email);
+	public List<User> findByEmail(String email) {
+		return UserFinder.findByEmail(email);
 	}
 }

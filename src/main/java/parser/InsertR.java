@@ -1,10 +1,13 @@
 package parser;
 
+import java.util.List;
+
 import dbupdate.Insert;
 import dbupdate.InsertP;
 import model.User;
+import persistence.UserFinder;
 
-public class InsertR implements Insert{
+public class InsertR implements Insert {
 
 	@Override
 	public User save(User user) {
@@ -12,14 +15,12 @@ public class InsertR implements Insert{
 	}
 
 	@Override
-	public User findByDNI(String dni) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findByDNI(String dni) {
+		return UserFinder.findByDNI(dni);
 	}
 
 	@Override
-	public User findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> findByEmail(String email) {
+		return UserFinder.findByEmail(email);
 	}
 }

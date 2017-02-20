@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 
-import model.User;
 import reportwriter.ReportWriter;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -20,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import executer.*;
+import model.User;
 
 //Esto sería RList
 public class ExcelLoader implements FileLoader {
