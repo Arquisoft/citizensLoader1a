@@ -119,4 +119,15 @@ public class ParserTest {
 		
 		assertEquals(st.toString(), "Ana Torres Pardo ana@example.com 01-ene-1960 Av. De la Constitución 8 Español 09940449X ");
 	}
+	
+	@Test
+	public void testReaderSingleton() {
+		ReaderSingleton rS = ReaderSingleton.getInstance();
+		rS.loadFile("cadenaIncorrecta");
+		rS.loadFile("test.xlsx");
+		ReaderSingleton rS1 = ReaderSingleton.getInstance();
+		rS1.loadFile("cadenaIncorrecta");
+		rS1.loadFile("test.xlsx");
+		assertEquals(rS, rS1);
+	}
 }
