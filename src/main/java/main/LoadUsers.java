@@ -15,7 +15,7 @@ public class LoadUsers {
 		runner.run(args);
 	}
 
-	void run(String... args) {
+	private void run(String... args) {
 		if (args.length == 0 || args[0].equals("--help"))
 			showHelp();
 		else if (args[0].equals("info"))
