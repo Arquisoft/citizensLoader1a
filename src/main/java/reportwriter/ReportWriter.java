@@ -15,4 +15,6 @@ public class ReportWriter {
 	public WriteReport getWriteReport() {
 		return wR;
 	}
+	
+	
 }

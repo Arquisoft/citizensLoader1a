@@ -12,4 +12,7 @@ public class WriteReportImpl implements WriteReport {
 		logger.log(lv, msg);
 	}
 
+	public Logger getLogger(){
+		return logger;
+	}
 }
