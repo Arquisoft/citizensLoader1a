@@ -20,17 +20,11 @@ public class InsertP implements Insert {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()){
+			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()
+				|| UserFinder.findByEmail(user.getEmail()).isEmpty()){
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
 						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
 			}else {
-				Jpa.getManager().persist(user);
-				trx.commit();
-			}
-			if (!UserFinder.findByEmail(user.getEmail()).isEmpty()){
-				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El email ya ha sido usado anteriormente");	
-			} else{
 				Jpa.getManager().persist(user);
 				trx.commit();
 			}
