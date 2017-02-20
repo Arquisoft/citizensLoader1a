@@ -29,6 +29,10 @@ public class User implements Serializable{
 	private String username;
 	private String password;
 
+	User(){
+		//Empty constructor for JPA
+	}
+	
 	public User(String nombre, String apellidos, String email, Date fechaNacimiento, String direccionPostal,
 			String nacionalidad, String DNI) {
 		setNombre(nombre);
