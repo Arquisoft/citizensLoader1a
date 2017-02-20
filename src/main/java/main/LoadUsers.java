@@ -21,6 +21,7 @@ public class LoadUsers {
 		MyContext.setApplicationContext(SpringApplication.run(LoadUsers.class));
 		LoadUsers runner = new LoadUsers();
 		runner.run(args);
+		MyContext.getApplicationContext().close();
 	}
 
 	void run(String... args) {
@@ -30,8 +31,8 @@ public class LoadUsers {
 			showInfo();
 		else if (args[0].equals("load")) {
 			if (args.length < 2)
-				System.err.println("La operacion load necesita al menos otro "
-						+ "argumento con la ubicacion del fichero");
+				System.err.println(
+						"La operacion load necesita al menos otro " + "argumento con la ubicacion del fichero");
 			else {
 				for (int i = 1; i <= args.length - 1; i++)
 					LoaderSingleton.getInstance().loadFile(args[i]);
@@ -58,8 +59,8 @@ public class LoadUsers {
 		System.out.println("Manual de ayuda para el uso de la aplicacion");
 		System.out.println("La aplicacion tiene implementadas las operaciones info, load y help");
 		System.out.println("	info: Muestra informacion relacionada con el proyecto, como los autores");
-		System.out.println("	load[file]: Permite cargar un conjunto de ficheros excel con usuarios "
-				+ "en la base de datos");
+		System.out.println(
+				"	load[file]: Permite cargar un conjunto de ficheros excel con usuarios " + "en la base de datos");
 		System.out.println("	--help: Muestra este menu de ayuda. Si no se proporcionan parametros "
 				+ "a la aplicacion se mostrara este menu");
 	}

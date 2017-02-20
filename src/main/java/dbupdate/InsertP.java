@@ -1,11 +1,9 @@
 package dbupdate;
 
 
-
 import model.User;
 
 public class InsertP implements Insert {
-	
 	UserRepository userRepository;
 
 	@Override

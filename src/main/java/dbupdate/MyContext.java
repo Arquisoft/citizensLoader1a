@@ -1,16 +1,16 @@
 package dbupdate;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 
 public class MyContext {
 
-	private static ApplicationContext context;
+	private static ConfigurableApplicationContext  context;
 
-	public static void setApplicationContext(ApplicationContext applicationContext) {
+	public static void setApplicationContext(ConfigurableApplicationContext  applicationContext) {
 		context = applicationContext;
 	}
 
-	public static ApplicationContext getApplicationContext() {
+	public static ConfigurableApplicationContext  getApplicationContext() {
 		return context;
 	}
 }
