@@ -41,7 +41,7 @@ public class User implements Serializable {
 		setDireccionPostal(direccionPostal);
 		setNacionalidad(nacionalidad);
 		setDNI(DNI);
-		generarUsername();
+		setUsername(email);
 		generarPassword();
 	}
 
@@ -139,17 +139,6 @@ public class User implements Serializable {
 		return "User [id =" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
 				+ ", fechaNacimiento=" + fechaNacimiento + ", direccionPostal=" + direccionPostal + ", nacionalidad="
 				+ nacionalidad + ", DNI=" + dni + "]";
-	}
-
-	private void generarUsername() {
-		StringBuffer username = new StringBuffer();
-		int low = 65;
-		int top = 90;
-		for (int i = 0; i < 12; i++) {
-			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
-			username.append((char) numAleatorio);
-		}
-		setUsername(username.toString());
 	}
 
 	private void generarPassword() {
