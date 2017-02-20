@@ -22,16 +22,14 @@ public class InsertP implements Insert {
 		try {
 			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El usuario ya ha sido registrado anteriormente " 
-								+ "debido a que aparecia en otra lista");
+						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
 				trx.rollback();
 			} else {
 				Jpa.getManager().persist(user);
 				trx.commit();
 			}
 		} catch (PersistenceException ex) {
-			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, 
-					"Error de la BBDD");
+			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Error de la BBDD");
 			if (trx.isActive())
 				trx.rollback();
 		} finally {
