@@ -10,14 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Users")
-public class User implements Serializable{
+@Table(name = "Users")
+public class User implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String apellidos;
@@ -28,6 +28,9 @@ public class User implements Serializable{
 	private String dni;
 	private String username;
 	private String password;
+
+	User() {
+	}
 
 	public User(String nombre, String apellidos, String email, Date fechaNacimiento, String direccionPostal,
 			String nacionalidad, String DNI) {
@@ -144,7 +147,7 @@ public class User implements Serializable{
 		int top = 90;
 		for (int i = 0; i < 12; i++) {
 			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
-			username.append((char) numAleatorio); 
+			username.append((char) numAleatorio);
 		}
 		setUsername(username.toString());
 	}
