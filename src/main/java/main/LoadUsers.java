@@ -1,5 +1,11 @@
 package main;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import dbupdate.MyContext;
 import parser.LoaderSingleton;
 
 /**
@@ -8,10 +14,12 @@ import parser.LoaderSingleton;
  * @author 1A1
  *
  */
+@SpringBootApplication
 public class LoadUsers {
 
 	public static void main(String... args) {
-		final LoadUsers runner = new LoadUsers();
+		MyContext.setApplicationContext(SpringApplication.run(LoadUsers.class));
+		LoadUsers runner = new LoadUsers();
 		runner.run(args);
 	}
 

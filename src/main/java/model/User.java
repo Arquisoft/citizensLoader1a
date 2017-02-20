@@ -11,10 +11,10 @@ import javax.persistence.Table;
 
 @SuppressWarnings("unused")
 @Entity
-@Table(name = "Users")
+@Table(name="Users")
 public class User{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String nombre;
 	private String apellidos;
@@ -25,9 +25,6 @@ public class User{
 	private String dni;
 	private String username;
 	private String password;
-
-	User() {
-	} // Constructor vacio para JPA
 
 	public User(String nombre, String apellidos, String email, Date fechaNacimiento, String direccionPostal,
 			String nacionalidad, String DNI) {
@@ -106,10 +103,6 @@ public class User{
 		this.dni = DNI;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,7 +130,7 @@ public class User{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
+		return "User [id =" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
 				+ ", fechaNacimiento=" + fechaNacimiento + ", direccionPostal=" + direccionPostal + ", nacionalidad="
 				+ nacionalidad + ", DNI=" + dni + "]";
 	}

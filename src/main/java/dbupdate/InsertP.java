@@ -1,20 +1,19 @@
 package dbupdate;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import model.User;
 
-public class InsertP implements Insert{
-
-	@Autowired
-	UserRepository userRepository;
+public class InsertP implements Insert {
 	
+	UserRepository userRepository;
+
 	@Override
 	public User save(User user) {
-		try{
+		userRepository = MyContext.getApplicationContext().getBean(UserRepository.class);
+		try {
 			userRepository.save(user);
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return user;
