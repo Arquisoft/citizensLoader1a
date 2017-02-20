@@ -23,7 +23,7 @@ public class InsertP implements Insert {
 			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
 						"El usuario ya ha sido registrado anteriormente " + "debido a que aparecia en otra lista");
-			if (!UserFinder.findByEmail(user.getDNI()).isEmpty()){
+			if (!UserFinder.findByEmail(user.getEmail()).isEmpty()){
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
 						"El email ya ha sido usado anteriormente");
 			}	
