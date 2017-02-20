@@ -24,6 +24,10 @@ public class InsertP implements Insert {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
 						"El usuario ya ha sido registrado anteriormente " 
 								+ "debido a que aparecia en otra lista");
+			if(!UserFinder.findByEmail(user.getEmail()).isEmpty()){
+				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
+						"El email ya está siendo utilizado");
+			}
 				trx.rollback();
 			} else {
 				Jpa.getManager().persist(user);
