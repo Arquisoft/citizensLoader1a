@@ -14,7 +14,7 @@ public class ParserTest {
 
 	@Test
 	public void testLoadExcelExito() throws FileNotFoundException {
-		ExcelLoader ex = new ExcelLoader();
+		RList ex = new RList();
 		ex.load("src/test/resources/test.xlsx");
 		
 		assertEquals(ex.getAllUsers().size(),3);
@@ -52,7 +52,7 @@ public class ParserTest {
 
 	@Test (expected = FileNotFoundException.class)
 	public void testLoadExcelFicheroNoEncontrado() throws FileNotFoundException {
-		ExcelLoader ex = new ExcelLoader();
+		RList ex = new RList();
 		ex.load("src/test/resources/fallo.xlsx");
 		
 		assertEquals(ex.getAllUsers().size(),3);
@@ -87,7 +87,7 @@ public class ParserTest {
 	
 	@Test (expected = IOException.class)
 	public void testLoadExcelErrorExcel() throws IOException {
-		ExcelLoader ex = new ExcelLoader();
+		RList ex = new RList();
 		ex.load("src/test/resources/vacio.xlsx");
 		
 		assertEquals(ex.getAllUsers().size(),3);

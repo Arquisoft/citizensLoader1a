@@ -5,17 +5,17 @@ import java.util.logging.Level;
 
 import reportwriter.ReportWriter;
 
-public class LoaderSingleton {
-	private static LoaderSingleton instance;
-	private FileLoader loader;
+public class ReaderSingleton {
+	private static ReaderSingleton instance;
+	private ReadList loader;
 
-	private LoaderSingleton() {
-		this.loader = new ExcelLoader();
+	private ReaderSingleton() {
+		this.loader = new RList();
 	}
 
-	public static LoaderSingleton getInstance() {
+	public static ReaderSingleton getInstance() {
 		if (instance == null)
-			instance = new LoaderSingleton();
+			instance = new ReaderSingleton();
 		return instance;
 	}
 

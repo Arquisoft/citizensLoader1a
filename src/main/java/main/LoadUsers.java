@@ -1,6 +1,6 @@
 package main;
 
-import parser.LoaderSingleton;
+import parser.ReaderSingleton;
 
 /**
  * Main application
@@ -26,7 +26,7 @@ public class LoadUsers {
 						"La operacion load necesita al menos otro " + "argumento con la ubicacion del fichero");
 			else {
 				for (int i = 1; i <= args.length - 1; i++)
-					LoaderSingleton.getInstance().loadFile(args[i]);
+					ReaderSingleton.getInstance().loadFile(args[i]);
 			}
 		}
 	}

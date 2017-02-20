@@ -21,8 +21,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import executer.*;
 import model.User;
 
-//Esto sería RList
-public class ExcelLoader implements FileLoader {
+
+public class RList implements ReadList {
 	private ActionFacade aF = new ActionFacadeClass();
 	private ArrayList<List<XSSFCell>> allUsers;
 
