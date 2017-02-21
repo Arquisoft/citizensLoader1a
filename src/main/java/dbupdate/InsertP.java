@@ -13,7 +13,6 @@ import com.lowagie.text.DocumentException;
 
 import model.User;
 import parser.cartas.Letter;
-import parser.cartas.LetterFactory;
 import parser.cartas.PdfLetter;
 import parser.cartas.TxtLetter;
 import parser.cartas.WordLetter;
