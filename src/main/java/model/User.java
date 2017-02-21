@@ -1,29 +1,39 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Date;
 
-@Entity(name = "TUsers")
-public class User {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Users")
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
 	private String apellidos;
 	private String email;
-	private String fechaNacimiento; // Lo dejo en String de momento. Hay que
-									// hablarlo con el otro grupo.
+	private Date fechaNacimiento;
 	private String direccionPostal;
 	private String nacionalidad;
-	private String DNI;
+	private String dni;
 	private String username;
 	private String password;
 
-	public User() {
-	} // Constructor vacio para JPA
+	User() {
+	}
 
-	public User(String nombre, String apellidos, String email,
-				String fechaNacimiento, String direccionPostal,
-				String nacionalidad, String DNI) {
+	public User(String nombre, String apellidos, String email, Date fechaNacimiento, String direccionPostal,
+			String nacionalidad, String DNI) {
 		setNombre(nombre);
 		setApellidos(apellidos);
 		setEmail(email);
@@ -31,7 +41,7 @@ public class User {
 		setDireccionPostal(direccionPostal);
 		setNacionalidad(nacionalidad);
 		setDNI(DNI);
-		generarUsername();
+		setUsername(email);
 		generarPassword();
 	}
 
@@ -67,11 +77,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getFechaNacimiento() {
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	private void setFechaNacimiento(String fechaNacimiento) {
+	private void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -92,22 +102,18 @@ public class User {
 	}
 
 	public String getDNI() {
-		return DNI;
+		return dni;
 	}
 
 	private void setDNI(String DNI) {
-		this.DNI = DNI;
-	}
-
-	public Long getId() {
-		return id;
+		this.dni = DNI;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((DNI == null) ? 0 : DNI.hashCode());
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
 		return result;
 	}
 
@@ -120,47 +126,42 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (DNI == null) {
-			if (other.DNI != null)
+		if (dni == null) {
+			if (other.dni != null)
 				return false;
-		} else if (!DNI.equals(other.DNI))
+		} else if (!dni.equals(other.dni))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nombre=" + nombre + ", apellidos="
-				+ apellidos + ", email=" + email + ", fechaNacimiento="
-				+ fechaNacimiento + ", direccionPostal=" + direccionPostal
-				+ ", nacionalidad=" + nacionalidad + ", DNI=" + DNI + "]";
+		return "User [id =" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
+				+ ", fechaNacimiento=" + fechaNacimiento + ", direccionPostal=" + direccionPostal + ", nacionalidad="
+				+ nacionalidad + ", DNI=" + dni + "]";
 	}
-	
-	private void generarUsername()
-	{
-		String username = "";
+
+	private void generarPassword() {
+		StringBuffer pass = new StringBuffer();
 		int low = 65;
 		int top = 90;
-		for(int i = 0; i<12; i++){
-			int numAleatorio = (int)Math.floor(Math.random()*(top - low) + low);
-			username += (char)numAleatorio;
+		for (int i = 0; i < 9; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (top - low) + low);
+			pass.append((char) numAleatorio);
 		}
-		setUsername(username);
+		for (int i = 0; i < 3; i++) {
+			int numAleatorio = (int) Math.floor(Math.random() * (9 - 0) + 0);
+			pass.append(numAleatorio);
+		}
+		setPassword(pass.toString());
 	}
-	
-	private void generarPassword()
-	{
-		String pass = "";
-		int low = 65;
-		int top = 90;
-		for(int i = 0; i<9; i++){
-			int numAleatorio = (int)Math.floor(Math.random()*(top - low) + low);
-			pass += (char)numAleatorio;
-		}
-		for(int i = 0; i<3; i++){
-			int numAleatorio = (int)Math.floor(Math.random()*(9 - 0) + 0);
-			pass += numAleatorio;
-		}
-		setPassword(pass);
+
+	public String getUsername() {
+		return username;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
 }
