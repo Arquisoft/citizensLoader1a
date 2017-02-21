@@ -1,4 +1,4 @@
-package reportWritter;
+package reportwritter;
 
 import static org.junit.Assert.*;
 

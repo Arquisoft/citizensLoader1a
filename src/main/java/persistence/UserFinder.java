@@ -1,15 +1,8 @@
 package persistence;
 
 import java.util.List;
-import java.util.logging.Level;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceException;
-
 import model.User;
 import persistence.util.Jpa;
-import reportwriter.ReportWriter;
 
 public class UserFinder {
 

@@ -16,41 +16,41 @@ public class UserTest {
 		User user1 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
 		User user2 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
 		User user3 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7787777R");
-		User user4 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", null);
-		
+		User user4 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "5555555Y");
+
 		assertEquals(true, user1.equals(user2));
 		assertEquals(true, user3.equals(user3));
 		assertEquals(false, user2.equals(user3));
-		assertEquals(false, user1.equals(null));
 		assertEquals(false, user1.equals(new Integer(8)));
 		assertEquals(false, user4.equals(user3));
 	}
-	
+
 	@Test
 	public void testHashCode() {
 		Date date = new Date(System.currentTimeMillis());
 		User user1 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
 		User user2 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
 		User user3 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7787777R");
-		User user4 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", null);
-		User user5 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", null);
-		
+		User user4 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "5555555Y");
+		User user5 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "5555555Y");
+
 		assertEquals(user1.hashCode(), user2.hashCode());
 		assertEquals(user4.hashCode(), user5.hashCode());
 		assertNotEquals(user2.hashCode(), user3.hashCode());
-		
+
 		System.out.println(user1.toString());
 	}
-	
+
 	@Test
 	public void testAll() {
 		Date date = new Date(System.currentTimeMillis());
 		User user1 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
-		
+
 		String password = user1.getPassword();
 		String userName = user1.getUsername();
-		String toString = "User [id =null, nombre=Dani, apellidos=Duque, email=email@gmail.com, fechaNacimiento="+date+", direccionPostal=C\\Buenavida, nacionalidad=Español, DNI=7777777R]";
-		
+		String toString = "User [id =null, nombre=Dani, apellidos=Duque, email=email@gmail.com, fechaNacimiento=" + date
+				+ ", direccionPostal=C\\Buenavida, nacionalidad=Español, DNI=7777777R]";
+
 		assertEquals("Dani", user1.getNombre());
 		assertEquals("Duque", user1.getApellidos());
 		assertEquals("email@gmail.com", user1.getEmail());
