@@ -10,10 +10,12 @@ import static org.junit.Assert.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.junit.Test;
 
+import com.lowagie.text.DocumentException;
+
 public class ParserTest {
 
 	@Test
-	public void testLoadExcelExito() throws FileNotFoundException {
+	public void testLoadExcelExito() throws FileNotFoundException, DocumentException {
 		RList ex = new RList();
 		ex.load("src/test/resources/test.xlsx");
 		
@@ -51,7 +53,7 @@ public class ParserTest {
 	}
 
 	@Test (expected = FileNotFoundException.class)
-	public void testLoadExcelFicheroNoEncontrado() throws FileNotFoundException {
+	public void testLoadExcelFicheroNoEncontrado() throws FileNotFoundException, DocumentException {
 		RList ex = new RList();
 		ex.load("src/test/resources/fallo.xlsx");
 		
@@ -86,7 +88,7 @@ public class ParserTest {
 	}
 	
 	@Test (expected = IOException.class)
-	public void testLoadExcelErrorExcel() throws IOException {
+	public void testLoadExcelErrorExcel() throws IOException, DocumentException {
 		RList ex = new RList();
 		ex.load("src/test/resources/vacio.xlsx");
 		
@@ -121,7 +123,7 @@ public class ParserTest {
 	}
 	
 	@Test
-	public void testReaderSingleton() {
+	public void testReaderSingleton() throws DocumentException {
 		ReaderSingleton rS = ReaderSingleton.getInstance();
 		rS.loadFile("cadenaIncorrecta");
 		rS.loadFile("test.xlsx");

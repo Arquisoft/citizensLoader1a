@@ -1,5 +1,7 @@
 package dbupdate;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -7,7 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 
+import com.lowagie.text.DocumentException;
+
 import model.User;
+import parser.cartas.Letter;
+import parser.cartas.LetterFactory;
+import parser.cartas.PdfLetter;
 import persistence.UserFinder;
 import persistence.util.Jpa;
 import reportwriter.ReportWriter;
@@ -15,7 +22,7 @@ import reportwriter.ReportWriter;
 public class InsertP implements Insert {
 
 	@Override
-	public User save(User user) {
+	public User save(User user) throws FileNotFoundException, DocumentException, IOException {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
@@ -31,6 +38,8 @@ public class InsertP implements Insert {
 			} else {
 				Jpa.getManager().persist(user);
 				trx.commit();
+				Letter letter = new PdfLetter();
+				letter.createLetter(user);
 			}
 		} catch (PersistenceException ex) {
 			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Error de la BBDD");

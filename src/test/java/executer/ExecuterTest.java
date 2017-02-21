@@ -2,12 +2,16 @@ package executer;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.junit.Test;
+
+import com.lowagie.text.DocumentException;
 
 import model.User;
 import persistence.UserFinder;
@@ -16,7 +20,7 @@ import persistence.util.Jpa;
 public class ExecuterTest {
 
 	@Test
-	public void testActionSingleton() {
+	public void testActionSingleton() throws FileNotFoundException, DocumentException, IOException {
 		ActionSingleton aS = ActionSingleton.getInstance();
 		ActionSingleton aS2 = ActionSingleton.getInstance();
 		

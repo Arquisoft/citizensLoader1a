@@ -3,6 +3,8 @@ package parser;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 
+import com.lowagie.text.DocumentException;
+
 import reportwriter.ReportWriter;
 
 public class ReaderSingleton {
@@ -19,7 +21,7 @@ public class ReaderSingleton {
 		return instance;
 	}
 
-	public void loadFile(String cad) {
+	public void loadFile(String cad) throws DocumentException {
 		try{
 			loader.load(cad);
 		}catch (FileNotFoundException e) {

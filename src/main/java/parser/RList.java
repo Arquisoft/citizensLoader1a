@@ -18,6 +18,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.lowagie.text.DocumentException;
+
 import executer.*;
 import model.User;
 
@@ -38,9 +40,10 @@ public class RList implements ReadList {
 	 *            ruta del fichero
 	 * 
 	 *  @exception FileNotFoundException No se encuentra el fichero excel
+	 * @throws DocumentException 
 	 */
 	@Override
-	public void load(String path) throws FileNotFoundException{
+	public void load(String path) throws FileNotFoundException, DocumentException{
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
 		allUsers = new ArrayList<List<XSSFCell>>();
@@ -103,7 +106,7 @@ public class RList implements ReadList {
 		this.aF = aF;
 	}
 
-	private void crearUsuarios(List<XSSFCell> list) {
+	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
 		User user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 				list.get(2).getStringCellValue(), list.get(3).getDateCellValue(), 
 				list.get(4).getStringCellValue(),list.get(5).getStringCellValue(), 
