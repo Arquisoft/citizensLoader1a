@@ -15,6 +15,8 @@ import model.User;
 import parser.cartas.Letter;
 import parser.cartas.LetterFactory;
 import parser.cartas.PdfLetter;
+import parser.cartas.TxtLetter;
+import parser.cartas.WordLetter;
 import persistence.UserFinder;
 import persistence.util.Jpa;
 import reportwriter.ReportWriter;
@@ -39,6 +41,10 @@ public class InsertP implements Insert {
 				Jpa.getManager().persist(user);
 				trx.commit();
 				Letter letter = new PdfLetter();
+				letter.createLetter(user);
+				letter = new TxtLetter();
+				letter.createLetter(user);
+				letter = new WordLetter();
 				letter.createLetter(user);
 			}
 		} catch (PersistenceException ex) {
